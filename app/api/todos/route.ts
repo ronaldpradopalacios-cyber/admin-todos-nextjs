@@ -1,5 +1,6 @@
 import prisma from "@/app/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
+import { object, string, boolean } from "yup";
 
 export async function GET(request: Request) {
   // queryParams
@@ -27,4 +28,29 @@ export async function GET(request: Request) {
   });
 
   return NextResponse.json(todos);
+}
+
+// Schema de validacion del POST
+const postSchema = object({
+  title: string().required(""),
+  completed: boolean().optional().default(false),
+});
+
+export async function POST(request: Request) {
+  try {
+    const { completed, title } = await postSchema.validate(
+      await request.json(),
+    );
+
+    const todoNew = await prisma.todo.create({
+      data: {
+        title,
+        completed,
+      },
+    });
+
+    return NextResponse.json(todoNew);
+  } catch (error) {
+    return NextResponse.json(error, { status: 400 });
+  }
 }
