@@ -16,7 +16,7 @@ export async function GET(request: Request) {
   await prisma.todo.createMany({
     data: [
       { title: "Piedra del alma", completed: true },
-      { title: "Piedra del tiempo" },
+      { title: "Piedra del tiempo", completed: true },
       { title: "Piedra del poder" },
       { title: "Piedra del espacio" },
       { title: "Piedra de la realidad" },
