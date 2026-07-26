@@ -1,5 +1,19 @@
 import { Todo } from "@/app/generated/prisma/client";
 
+export const createTodo = async (title: string): Promise<Todo> => {
+  const body = JSON.stringify({ title });
+
+  const createdTodo = await fetch("/api/todos", {
+    method: "POST",
+    body,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+
+  return createdTodo;
+};
+
 export const updateTodo = async (
   id: string,
   completed: boolean,
@@ -14,7 +28,14 @@ export const updateTodo = async (
     },
   }).then((res) => res.json());
 
-  console.log("dbTodoResult", { dbTodoResult });
-
   return dbTodoResult;
+};
+
+export const deleteCompletedTodos = async (): Promise<void> => {
+  await fetch("/api/todos", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };
