@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoTrashOutline } from "react-icons/io5";
-import * as todosHelper from "@/app/todos/helpers/todos";
+import * as todosApi from "@/app/todos/helpers/todos";
 
 export const NewTodo = () => {
   const [title, setTitle] = useState("");
@@ -14,7 +14,7 @@ export const NewTodo = () => {
 
     if (title.trim().length === 0) return;
 
-    const createdTodo = await todosHelper.createTodo(title);
+    const createdTodo = await todosApi.createTodo(title);
     console.log({ createdTodo });
 
     setTitle("");
@@ -22,7 +22,7 @@ export const NewTodo = () => {
   };
 
   const deleteCompleted = async () => {
-    await todosHelper.deleteCompletedTodos();
+    await todosApi.deleteCompletedTodos();
     router.refresh();
   };
 
