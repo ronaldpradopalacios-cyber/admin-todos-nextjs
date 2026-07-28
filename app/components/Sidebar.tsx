@@ -4,6 +4,7 @@ import { SidebarItem } from "./SidebarItem";
 import {
   IoCalendarOutline,
   IoCheckboxOutline,
+  IoCodeWorkingOutline,
   IoListOutline,
   IoLogOut,
 } from "react-icons/io5";
@@ -24,6 +25,11 @@ export const Sidebar = () => {
       href: "/dashboard/server-todos",
       icon: <IoListOutline size={30} />,
       label: "Server TODOS",
+    },
+    {
+      href: "/dashboard/cookies",
+      icon: <IoCodeWorkingOutline size={30} />,
+      label: "Cookies",
     },
   ];
 
