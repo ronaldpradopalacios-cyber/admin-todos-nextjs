@@ -7,7 +7,6 @@ import { IoAddCircleOutline, IoTrashOutline } from "react-icons/io5";
 import { RatingStar } from "./RatingStar";
 import {
   addProductToCart,
-  getCookieCart,
   removeProductFromCart,
 } from "../../shoping-cart/actions/actions";
 
@@ -30,7 +29,7 @@ export const ProductCard = ({ id, name, price, rating, image }: Props) => {
   };
 
   const onDeleteFromCart = () => {
-    // Lógica para eliminar el producto del carrito
+    // Lógica para eliminar el producto (y todas las cantidades agregadas) del carrito
     removeProductFromCart(id);
     router.refresh(); // Refresca la página para actualizar el estado del carrito
   };
